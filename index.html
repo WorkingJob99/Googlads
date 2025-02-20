@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting to WhatsApp...</title>
+    <script>
+        function redirectToWhatsApp() {
+            // नए WhatsApp नंबर (बिना '+')
+            var numbers = [
+                "447887081714", // Number 1
+                "447884745990", // Number 2
+                "447387649178", // Number 3
+                "447443136797", // Number 4
+                "447721287239", // Number 5
+                "447833347904", // Number 6
+                "447990210678", // Number 7
+                "447849613589", // Number 8
+                "447469816300", // Number 9
+                "447514139213", // Number 10
+                "447392514931", // Number 11
+                "447443745996"  // Number 12
+            ];
+
+            // Random नंबर चुनना
+            var randomIndex = Math.floor(Math.random() * numbers.length);
+            var selectedNumber = numbers[randomIndex];
+
+            // WhatsApp लिंक बनाना और रीडायरेक्ट करना
+            window.location.href = "https://wa.me/" + selectedNumber;
+        }
+
+        // पेज लोड होते ही रीडायरेक्ट करना
+        window.onload = redirectToWhatsApp;
+    </script>
+</head>
+<body>
+</body>
+</html>
