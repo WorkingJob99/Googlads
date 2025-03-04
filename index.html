@@ -60,7 +60,7 @@
                 let seconds = Math.floor((timeLeft % 60000) / 1000);
                 document.getElementById("timer").innerText = "00:" + (seconds < 10 ? "0" : "") + seconds;
 
-                setTimeout(updateTimer, 1000);
+                setTimeout(updateTimer, 1000); // हर सेकंड अपडेट होगा
             }
         }
 
@@ -87,7 +87,7 @@
             document.getElementById("whatsappLink").href = whatsappLink;
             document.getElementById("whatsappLink").innerText = "WhatsApp पर जाएं";
 
-            updateTimer();
+            updateTimer(); // काउंटडाउन शुरू करें
         }
     </script>
 </head>
