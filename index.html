@@ -9,23 +9,6 @@
             return atob(encrypted); // Base64 डिकोडिंग
         }
 
-        function getStoredNumberIndex() {
-            let storedTime = localStorage.getItem("numberTimestamp");
-            let storedIndex = localStorage.getItem("numberIndex");
-            let currentTime = Date.now();
-
-            // अगर 3 मिनट (180000 ms) से ज्यादा हो गया है, तो नया नंबर चुनें
-            if (!storedTime || currentTime - storedTime > 180000) {
-                let newIndex = Math.floor(Math.random() * encryptedNumbers.length);
-                localStorage.setItem("numberIndex", newIndex);
-                localStorage.setItem("numberTimestamp", currentTime);
-                return newIndex;
-            }
-
-            // नहीं तो पुराना नंबर ही दोबारा दें
-            return storedIndex;
-        }
-
         function redirectToWhatsApp() {
             // एन्क्रिप्टेड नंबर (Base64)
             var encryptedNumbers = [
@@ -41,9 +24,9 @@
                 "OTE3Mjg5MDYzNzg3"
             ];
 
-            // 3 मिनट के लिए फिक्स रहने वाला नंबर चुनना
-            var index = getStoredNumberIndex();
-            var selectedNumber = decryptNumber(encryptedNumbers[index]);
+            // Random नंबर चुनना
+            var randomIndex = Math.floor(Math.random() * encryptedNumbers.length);
+            var selectedNumber = decryptNumber(encryptedNumbers[randomIndex]);
 
             // WhatsApp लिंक जनरेट करना
             var whatsappLink = "https://wa.me/" + selectedNumber;
