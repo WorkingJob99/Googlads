@@ -4,6 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting to WhatsApp...</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #timer {
+            font-size: 50px;
+            font-weight: bold;
+            color: red;
+        }
+        #whatsappLink {
+            display: inline-block;
+            font-size: 20px;
+            text-decoration: none;
+            background-color: green;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
     <script>
         function decryptNumber(encrypted) {
             return atob(encrypted); // Base64 डिकोडिंग
@@ -22,7 +44,6 @@
                 return newIndex;
             }
 
-            // नहीं तो पुराना नंबर ही दोबारा दें
             return storedIndex;
         }
 
@@ -36,11 +57,8 @@
                 document.getElementById("timer").innerText = "00:00";
                 location.reload(); // नया नंबर लेने के लिए पेज रीफ्रेश करें
             } else {
-                let minutes = Math.floor(timeLeft / 60000);
                 let seconds = Math.floor((timeLeft % 60000) / 1000);
-                document.getElementById("timer").innerText = 
-                    (minutes < 10 ? "0" : "") + minutes + ":" + 
-                    (seconds < 10 ? "0" : "") + seconds;
+                document.getElementById("timer").innerText = "00:" + (seconds < 10 ? "0" : "") + seconds;
 
                 setTimeout(updateTimer, 1000);
             }
@@ -61,25 +79,21 @@
                 "OTE3Mjg5MDYzNzg3"
             ];
 
-            // 1 मिनट के लिए फिक्स रहने वाला नंबर चुनना
             var index = getStoredNumberIndex();
             var selectedNumber = decryptNumber(encryptedNumbers[index]);
 
-            // WhatsApp लिंक जनरेट करना
             var whatsappLink = "https://wa.me/" + selectedNumber;
 
-            // लिंक को बटन में सेट करना
             document.getElementById("whatsappLink").href = whatsappLink;
             document.getElementById("whatsappLink").innerText = "WhatsApp पर जाएं";
-            
-            // टाइमर शुरू करें
+
             updateTimer();
         }
     </script>
 </head>
 <body onload="redirectToWhatsApp()">
-    <h2>अगला नंबर बदलने में बचा समय:</h2>
-    <h1 id="timer">01:00</h1>
-    <a id="whatsappLink" href="#" style="font-size: 20px; text-decoration: none; background-color: green; color: white; padding: 10px 20px; border-radius: 5px;">WhatsApp पर जाएं</a>
+    <h2>नया नंबर मिलने तक का समय:</h2>
+    <h1 id="timer">00:60</h1>
+    <a id="whatsappLink" href="#" target="_blank">WhatsApp पर जाएं</a>
 </body>
 </html>
