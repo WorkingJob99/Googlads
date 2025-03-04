@@ -1,21 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto Redirect</title>
-    <script type="text/javascript">
-        // Redirect immediately when the page loads
-        window.onload = function() {
-            window.location.href = "https://wslnk.com/link/yd-1"; // Change this to the link you want
-        };
+    <title>Redirecting to WhatsApp...</title>
+    <script>
+        function decryptNumber(encrypted) {
+            return atob(encrypted); // Base64 डिकोडिंग
+        }
 
-         // window.onload = function() {
-            // window.location.href = "workfromathomeredirect"; // Change this to the link you want
-        // }; 
+        function redirectToWhatsApp() {
+            // एन्क्रिप्टेड नंबर (Base64)
+            var encryptedNumbers = [
+                "OTE2Mzc1MDI1NTgx",
+                "OTE5NTgxNTg4MDE5",
+                "OTE4MjYxOTM1NzIz",
+                "OTE5ODU1NzMwODM4",
+                "OTE5NTg1NzQyNDUx",
+                "OTE4MTkwOTgzOTk2",
+                "OTE5NzQ4OTE4MTY1",
+                "OTE5ODYxNTA0NzYx",
+                "OTE5ODg4MDE1MzA2",
+                "OTE3Mjg5MDYzNzg3"
+            ];
+
+            // Random नंबर चुनना
+            var randomIndex = Math.floor(Math.random() * encryptedNumbers.length);
+            var selectedNumber = decryptNumber(encryptedNumbers[randomIndex]);
+
+            // WhatsApp लिंक जनरेट करना
+            var whatsappLink = "https://wa.me/" + selectedNumber;
+
+            // Redirect करना
+            window.location.replace(whatsappLink);
+        }
     </script>
 </head>
-<body>
-    <!-- No content in the body -->
+<body onload="redirectToWhatsApp()">
 </body>
 </html>
